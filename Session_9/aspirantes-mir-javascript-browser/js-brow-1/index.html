@@ -20,14 +20,18 @@
         console.log("resultadoMayusculas: ", resultadoMayusculas);
 
         input.addEventListener('input', function() {
-            const texto = input.value.toUpperCase();
+            const texto = getTexto();
             resultado.textContent = texto;
         });
 
         btn.addEventListener('click', function(){
-            const texto = input.value.toUpperCase();
+            const texto = getTexto();
             resultadoMayusculas.textContent = texto;
         });
+
+      const getTexto = function() {
+          return input.value.toUpperCase();
+      };
     </script>
   </body>
 </html>
