@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+</head>
+
+<body>
+    <div>
+        <form>
+            <label for="name">Ingresa tu nombre</label>
+            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre">
+            <br>
+            <label for="name">Ingresa tu e-mail</label>
+            <input type="email" id="email" name="email" placeholder="Ingresa tu e-mail">
+            <br>
+            <div>
+                <button type="submit">
+                    Guardar
+                </button>
+                <button id="remove">
+                    Borrar
+                </button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <section></section>
+    <script>
+        // Obtener elementos del DOM
+        const form = document.querySelector('form');
+        const name = document.querySelector('#name');
+        const email = document.querySelector('#email');
+        const section = document.querySelector('section');
+        const remove = document.getElementById("remove");
+
+        // Manejar el evento de enviar el formulario
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            if (name.value && email.value) {
+
+                const userData = {
+                    name: formData.get("name"),
+                    email: formData.get("email"),
+                }
+
+                localStorage.setItem("user_data", JSON.stringify(userData));
+                showName();
+                clearForm();
+            }
+        });
+
+        function clearForm() {
+            name.value = "";
+            email.value = "";
+        }
+
+        remove.addEventListener('click', () => {
+            deleteName();
+        });
+
+        // Función para mostrar el nombre guardado en localStorage
+        function showName() {
+            const infoUserData = JSON.parse(localStorage.getItem("user_data"));
+            let info_text = "Nombre: " +infoUserData.name;
+            info_text += "<br> E-mail: " + infoUserData.email;
+            section.innerHTML = info_text;
+        }
+
+        // Función para borrar el nombre guardado en localStorage
+        function deleteName() {
+            localStorage.removeItem("user_data");
+            section.innerHTML = "";
+        }
+
+        // Mostrar localStorage data una vez carge la página
+        onload = () => {
+            showName();
+        }
+    </script>
+</body>
+
+</html>
