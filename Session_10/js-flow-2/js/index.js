@@ -38,8 +38,14 @@ function handleSubmit() {
 }
 
 function handleDelete() {
-  let doneTasks = taskList.querySelectorAll('.checked');
-  for (let i = 0; i < doneTasks.length; i++) {
-    doneTasks[i].remove();
+  tasks = tasks.filter(function (task) {
+    return !task.completed;
+  });
+  const doneTaskElements = taskList.querySelectorAll('.checked');
+
+  for (let i = 0; i < doneTaskElements.length; i++) {
+    const doneTaskElement = doneTaskElements[i];
+    const taskId = parseInt(doneTaskElement.getAttribute('data-id'));
+    if (taskId) taskList.removeChild(doneTaskElement);
   }
 }
