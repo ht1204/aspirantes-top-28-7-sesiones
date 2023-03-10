@@ -1,51 +1,46 @@
-let taskInput = document.getElementById('task-input');
-let taskList = document.getElementById('task-list');
-let tasks = [];
+var ul = document.getElementById('list');
+var li;
+var addButton = document.getElementById('add');
+addButton.addEventListener('click', addItem);
 
-function handleSubmit() {
-  if (!taskInput.value) {
-    alert('Por favor, ingrese una tarea');
-    return;
+function addItem() {
+  var input = document.getElementById('input');
+  var item = input.value;
+  var textNode = document.createTextNode(item);
+  if (item == '') {
+
+    msg = 'Enter your Task';
+    alert(msg);
+    return false;
+  } else {
+    li = document.createElement('li');
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.setAttribute('id', 'check');
+
+    let label = document.createElement('label');
+
+    ul.appendChild(label);
+    li.appendChild(checkbox);
+    label.appendChild(textNode);
+    li.appendChild(label);
+    ul.insertBefore(li, ul.childNodes[0]);
+    setTimeout(() => {
+      li.className = 'visual';
+    }, 5);
+    input.value = ' ';
   }
-
-  const task = {
-    id: tasks.length + 1,
-    title: taskInput.value,
-    completed: false,
-  };
-
-  tasks.push(task);
-  taskInput.value = '';
-
-  let taskElement = document.createElement('li');
-  taskElement.innerHTML = task.title;
-  taskElement.setAttribute('data-id', task.id);
-
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.onclick = function () {
-    const taskId = parseInt(taskElement.getAttribute('data-id'));
-    const taskIndex = tasks.findIndex(function (task) {
-      return task.id === taskId;
-    });
-    tasks[taskIndex].completed = this.checked;
-    taskElement.classList.toggle('checked', this.checked);
-  };
-
-  taskElement.appendChild(checkbox);
-
-  taskList.appendChild(taskElement);
 }
 
-function handleDelete() {
-  tasks = tasks.filter(function (task) {
-    return !task.completed;
-  });
-  const doneTaskElements = taskList.querySelectorAll('.checked');
+var removeButton = document.getElementById('remove');
+removeButton.addEventListener('click', removeItem);
 
-  for (let i = 0; i < doneTaskElements.length; i++) {
-    const doneTaskElement = doneTaskElements[i];
-    const taskId = parseInt(doneTaskElement.getAttribute('data-id'));
-    if (taskId) taskList.removeChild(doneTaskElement);
+function removeItem() {
+  li = ul.children;
+  for (let index = 0; index < li.length; index++) {
+    const element = li[index];
+    while (element && element.children[0].checked) {
+      ul.removeChild(element);
+    }
   }
 }
