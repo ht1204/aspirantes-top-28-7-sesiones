@@ -1,46 +1,68 @@
-var ul = document.getElementById('list');
-var li;
-var addButton = document.getElementById('add');
-addButton.addEventListener('click', addItem);
+// Initialize to-do list array
+let todoList = [];
 
-function addItem() {
-  var input = document.getElementById('input');
-  var item = input.value;
-  var textNode = document.createTextNode(item);
-  if (item == '') {
+// Get HTML elements
+const todoForm = document.querySelector('#todo-form');
+const todoInput = document.querySelector('#todo-input');
+const todoListContainer = document.querySelector('#todo-list');
+const deleteAllDoneButton = document.querySelector('#delete-all-done');
 
-    msg = 'Enter your Task';
-    alert(msg);
-    return false;
-  } else {
-    li = document.createElement('li');
-    let checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.setAttribute('id', 'check');
+// Add event listeners
+todoForm.addEventListener('submit', handleSubmit);
+deleteAllDoneButton.addEventListener('click', handleDeleteAllDone);
 
-    let label = document.createElement('label');
-
-    ul.appendChild(label);
-    li.appendChild(checkbox);
-    label.appendChild(textNode);
-    li.appendChild(label);
-    ul.insertBefore(li, ul.childNodes[0]);
-    setTimeout(() => {
-      li.className = 'visual';
-    }, 5);
-    input.value = ' ';
+// Handle form submit event
+function handleSubmit(event) {
+  event.preventDefault();
+  const title = todoInput.value.trim();
+  if (title !== '') {
+    const newTask = {
+      id: todoList.length + 1,
+      title: title,
+      completed: false,
+    };
+    todoList.push(newTask);
+    renderTodoList();
+    todoInput.value = '';
   }
 }
 
-var removeButton = document.getElementById('remove');
-removeButton.addEventListener('click', removeItem);
+// Handle checkbox click event
+function handleCheckTask(event) {
+  const taskId = parseInt(event.target.dataset.id);
+  const task = todoList.find(task => task.id === taskId);
+  task.completed = event.target.checked;
+  renderTodoList();
+}
 
-function removeItem() {
-  li = ul.children;
-  for (let index = 0; index < li.length; index++) {
-    const element = li[index];
-    while (element && element.children[0].checked) {
-      ul.removeChild(element);
-    }
-  }
+// Handle delete button click event
+function handleDelete(event) {
+  const taskId = parseInt(event.target.dataset.id);
+  todoList = todoList.filter(task => task.id !== taskId);
+  renderTodoList();
+}
+
+// Handle delete all done button click event
+function handleDeleteAllDone(event) {
+  todoList = todoList.filter(task => !task.completed);
+  renderTodoList();
+}
+
+// Render to-do list
+function renderTodoList() {
+  // Clear the list container
+  todoListContainer.innerHTML = '';
+
+  // Render each task as an <li> element
+  todoList.forEach((task) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <input type="checkbox" class="checkbox" data-id="${task.id}" ${
+      task.completed ? 'checked' : ''
+    }>
+      <span class="${task.completed ? 'completed' : ''}">${task.title}</span>
+    `;
+    listItem.querySelector('.checkbox').addEventListener('click', handleCheckTask);
+    todoListContainer.appendChild(listItem);
+  });
 }
