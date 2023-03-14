@@ -1,3 +1,34 @@
+/*
+
+function maxIndex(numbers) {
+    if (numbers.length < 1) {
+        return -1;
+    } else {
+        let resultIndex = 0;
+        let lastHigher = 0;
+        let iteratorOfNotNumbers = 0;
+
+        numbers.forEach((element, index) => {
+            if (!isNaN(element)) {
+                if (element > lastHigher) {
+                    lastHigher = element;
+                    resultIndex = index;
+                }
+            } else {
+                iteratorOfNotNumbers++;
+            }
+        });
+
+        if (iteratorOfNotNumbers === numbers.length) {
+            return -1;
+        } else {
+            return resultIndex;
+        }
+    }
+}
+
+*/
+
 const maxIndex = function(arr) {
 
     if(!arr.length) return -1;

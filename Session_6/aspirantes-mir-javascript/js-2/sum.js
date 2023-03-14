@@ -1,4 +1,21 @@
-// escribe la función sum acá
+/*
+function sum(numbers) {
+    if (!numbers.length) {
+        return 0;
+    } else if (numbers.length === 1) {
+        return numbers[0];
+    } else {
+        let result = 0;
+        numbers.forEach((element) => {
+            if (!isNaN(element)) {
+                result += element
+            }
+        });
+        return result;
+    }
+}
+
+*/
 const sum = function(arr) {
     /*
         if(!arr.length) return 0;
