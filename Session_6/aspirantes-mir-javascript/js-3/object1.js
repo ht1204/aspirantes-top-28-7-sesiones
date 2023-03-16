@@ -8,13 +8,14 @@ let pedro = {
 console.log(pedro['edad']);
 pedro.estatura = 1.8;
 delete pedro.activo;
+//Reflect.deleteProperty(person, 'activo');
 
 for(const key in pedro) {
     console.log(key, ": ", pedro[key]);
 }
 
-pedro.saluda = function(nombre) {
-    return `Hola, me llamo ${nombre}`;
+pedro.saluda = function() {
+    return `Hola, me llamo ${this.nombre}`;
 }
 
-console.log(pedro.saluda("Pedro Perez"));
+console.log(pedro.saluda());
