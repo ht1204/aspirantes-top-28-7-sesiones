@@ -28,6 +28,10 @@
     <br>
     <section></section>
     <script>
+        // Mostrar localStorage data una vez carge la página
+        onload = () => {
+            showName();
+        }
         // Obtener elementos del DOM
         const form = document.querySelector('form');
         const name = document.querySelector('#name');
@@ -75,10 +79,6 @@
             section.innerHTML = "";
         }
 
-        // Mostrar localStorage data una vez carge la página
-        onload = () => {
-            showName();
-        }
     </script>
 </body>
 
