@@ -6,10 +6,16 @@ const todoForm = document.querySelector('#todo-form');
 const todoInput = document.querySelector('#todo-input');
 const todoListContainer = document.querySelector('#todo-list');
 const deleteAllDoneButton = document.querySelector('#delete-all-done');
+// Get the filter checkboxes
+const filterCompletedCheckbox = document.getElementById('filter-completed');
+const filterUncompletedCheckbox = document.getElementById('filter-uncompleted');
+
 
 // Add event listeners
 todoForm.addEventListener('submit', handleSubmit);
 deleteAllDoneButton.addEventListener('click', handleDeleteAllDone);
+filterCompletedCheckbox.addEventListener('change', renderTodoList);
+filterUncompletedCheckbox.addEventListener('change', renderTodoList);
 
 // Handle form submit event
 function handleSubmit(event) {
@@ -52,9 +58,37 @@ function handleDeleteAllDone(event) {
 function renderTodoList() {
   // Clear the list container
   todoListContainer.innerHTML = '';
+  const showCompleted = document.getElementById('filter-completed').checked;
+  const showUncompleted = document.getElementById('filter-uncompleted').checked;
 
-  // Render each task as an <li> element
-  todoList.forEach((task) => {
+  if (!showCompleted && !showUncompleted) {
+    // Render each task as an <li> element
+    todoList.forEach((task) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+      <input type="checkbox" class="checkbox" data-id="${task.id}" ${
+        task.completed ? 'checked' : ''
+      }>
+      <span class="${task.completed ? 'completed' : ''}">${task.title}</span>
+    `;
+      listItem.querySelector('.checkbox').addEventListener('click', handleCheckTask);
+      todoListContainer.appendChild(listItem);
+    });
+  }
+
+  const filteredTasks = todoList.filter((task) => {
+    if (showCompleted && showUncompleted) {
+      return true; // Show all tasks
+    } else if (showCompleted && task.completed) {
+      return true; // Show completed tasks
+    } else if (showUncompleted && !task.completed) {
+      return true; // Show uncompleted tasks
+    } else {
+      return false; // Don't show this task
+    }
+  });
+
+  filteredTasks.forEach((task) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
       <input type="checkbox" class="checkbox" data-id="${task.id}" ${
@@ -62,7 +96,9 @@ function renderTodoList() {
     }>
       <span class="${task.completed ? 'completed' : ''}">${task.title}</span>
     `;
-    listItem.querySelector('.checkbox').addEventListener('click', handleCheckTask);
+    listItem
+      .querySelector('.checkbox')
+      .addEventListener('click', handleCheckTask);
     todoListContainer.appendChild(listItem);
   });
 }
