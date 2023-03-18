@@ -66,16 +66,21 @@ function renderTodoList() {
     todoList.forEach((task) => {
       const listItem = document.createElement('li');
       listItem.innerHTML = `
-      <input type="checkbox" class="checkbox" data-id="${task.id}" ${
-        task.completed ? 'checked' : ''
-      }>
+      <input type="checkbox" class="checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''
+        }>
       <span class="${task.completed ? 'completed' : ''}">${task.title}</span>
     `;
       listItem.querySelector('.checkbox').addEventListener('click', handleCheckTask);
       todoListContainer.appendChild(listItem);
     });
+  } else {
+    filteringTasks(todoList, showCompleted, showUncompleted);
   }
 
+}
+
+
+function filteringTasks(todoList, showCompleted, showUncompleted) {
   const filteredTasks = todoList.filter((task) => {
     if (showCompleted && showUncompleted) {
       return true; // Show all tasks
