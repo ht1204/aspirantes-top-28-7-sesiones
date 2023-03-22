@@ -21,15 +21,17 @@ filterUncompletedCheckbox.addEventListener('change', renderTodoList);
 function handleSubmit(event) {
   event.preventDefault();
   const title = todoInput.value.trim();
-  if (title !== '') {
+  if (title) {
     const newTask = {
       id: todoList.length + 1,
-      title: title,
+      title,
       completed: false,
     };
     todoList.push(newTask);
     renderTodoList();
     todoInput.value = '';
+  } else {
+    alert("Please, write a task!");
   }
 }
 
