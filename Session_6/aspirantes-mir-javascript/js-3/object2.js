@@ -5,7 +5,7 @@ let persona = {
     profesion: "Full Stack Developer"
 };
 
-//console.log(persona);
+console.log(persona);
 
 persona.presentacion = function () {
     return `${this.nombre} ${this.edad} ${this.ciudad} ${this.profesion}`;
