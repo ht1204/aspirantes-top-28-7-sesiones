@@ -16,10 +16,10 @@
             <input type="email" id="email" name="email" placeholder="Ingresa tu e-mail">
             <br>
             <div>
-                <button type="submit">
+                <button type="submit" name="SubmitButton" value="Guardar">
                     Guardar
                 </button>
-                <button id="remove">
+                <button type="button" id="remove" name="SubmitButton" value="Borrar">
                     Borrar
                 </button>
             </div>
@@ -53,6 +53,8 @@
                 localStorage.setItem("user_data", JSON.stringify(userData));
                 showName();
                 clearForm();
+            } else {
+              alert("Por favor, llene los campos del formulario");
             }
         });
 
@@ -62,13 +64,14 @@
         }
 
         remove.addEventListener('click', () => {
+            clearForm();
             deleteName();
         });
 
         // Función para mostrar el nombre guardado en localStorage
         function showName() {
             const infoUserData = JSON.parse(localStorage.getItem("user_data"));
-            let info_text = "Nombre: " +infoUserData.name;
+            let info_text = "Nombre: " + infoUserData.name;
             info_text += "<br> E-mail: " + infoUserData.email;
             section.innerHTML = info_text;
         }
