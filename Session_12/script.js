@@ -70,7 +70,7 @@ function createMenuItems(items) {
     let html = '';
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        html += `<li><a href="${item.link}">${item.name}</a>`;
+        html += `<li><a href="${item.link}" target="_blank">${item.name}</a>`;
         if (item.items && item.items.length) {
             html += '<ul>';
             html += createMenuItems(item.items);
