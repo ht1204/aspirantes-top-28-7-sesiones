@@ -81,6 +81,6 @@ function createMenuItems(items) {
     return html;
 }
 
-const menuElement = document.createElement('ul');
-menuElement.innerHTML = createMenuItems(menu);
-document.body.appendChild(menuElement);
+const menuContainer = document.querySelector('#menu');
+menuContainer.innerHTML = createMenuItems(menu);
+document.body.appendChild(menuContainer);
