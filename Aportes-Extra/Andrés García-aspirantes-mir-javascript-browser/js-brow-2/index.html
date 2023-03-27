@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TO-DO List Manager</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <h1>TO-DO List Manager</h1>
+    <form>
+      <input type="text" id="new-task" placeholder="Nueva tarea...">
+      <button type="button" id="add-task">Agregar</button>
+    </form>
+    <div id="filter-wrapper">
+      <label for="filter">Filtrar por:</label>
+      <select id="filter">
+        <option value="all">Todos</option>
+        <option value="completed">Completados</option>
+        <option value="incompleted">Incompletos</option>
+      </select>
+    </div>
+    <ul id="task-list"></ul>
+    <button type="button" id="delete-completed">Eliminar completados</button>
+    <script src="index.js"></script>
+  </body>
+</html>
