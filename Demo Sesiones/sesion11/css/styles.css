@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    margin: 0;
+    padding: 0.5em;
+    text-align: center;
+}
+
+form {
+    margin: 0 auto;
+    margin-top: 4rem;
+    max-width: 20em;
+    border: 1px solid #ccc;
+    padding: 1em;
+    border-radius: 0.25em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: inline-block;
+    width: 5em;
+    text-align: right;
+    margin-right: 1em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+#btn-save {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#btn-save {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    padding: 0.5em 1em;
+}
+
+#btn-save:hover {
+    background-color: #3e8e41;
+}
+
+#btn-section {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 1em auto;
+    max-width: 40em;
+    border: 1px solid #ccc;
+    border-radius: 0.25em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button {
+    margin: 0.25em;
+    padding: 0.25em;
+    border-radius: 0.25em;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ccc;
+}

@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-actions {
+    padding: 5px;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+}
+
+#add {
+    background: green;
+}
+
+#remove {
+    background: red;
+}
+
+#add:hover, #remove:hover {
+    background: grey;
+}
+
+
+section {
+    margin-top: 10px;
+}
+
+.div-child {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    background: blue;
+    margin: 12px 0 12px 0;
+}

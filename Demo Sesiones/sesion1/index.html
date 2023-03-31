@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HTML5 Title</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Hello, this is a web page</h1>
+        <br>
+        <button id="btn">Click me</button>
+        <script>
+            const btn = document.querySelector("#btn");
+            const h1 = document.querySelector("h1")
+            btn.addEventListener("click", function(event) {
+                h1.textContent = "Hello!";
+                alert("Hi, I'm an event!");
+            });
+
+        </script>
+        <script src="/assets/js/script.js"></script>
+    </body>
+</html>
